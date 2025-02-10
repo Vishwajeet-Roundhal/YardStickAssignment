@@ -1,4 +1,6 @@
 "use server";
+export const runtime = "edge"; // ✅ Runs Server Actions on Vercel Edge
+
 import { connectDB } from "@/app/lib/db";
 import { Task } from "@/app/model/Task";
 
