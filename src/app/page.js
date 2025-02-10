@@ -8,6 +8,7 @@ import "./styles.css"
 export default function Home() {
   const [tasks, setTasks] = useState([]);  // ✅ Store tasks in state
   const [loading, setLoading] = useState(true);
+  //hi 
 
   useEffect(() => {
     async function fetchTasks() {
