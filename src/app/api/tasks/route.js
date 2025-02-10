@@ -1,7 +1,7 @@
 import { connectDB } from "@/app/lib/db";
 import { Task } from "@/app/model/Task"; // ✅ Ensure correct path
 
-export const runtime = "edge"; // Optional: Use Edge functions on Vercel
+export const runtime = "nodejs"; // Optional: Use Edge functions on Vercel
 
 export async function GET() {
   await connectDB();
