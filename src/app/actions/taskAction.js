@@ -1,19 +1,17 @@
 "use server";
-export const runtime = "edge"; // ✅ Runs Server Actions on Vercel Edge
 
 import { connectDB } from "@/app/lib/db";
 import { Task } from "@/app/model/Task";
 
 // Fetch tasks
+// ✅ Fetch tasks (No Edge runtime here)
 export async function getTasks() {
   await connectDB();
-  const tasks = await Task.find().lean(); // ✅ Converts Mongoose objects to plain JSON
-
-  // ✅ Convert `_id` from ObjectId to String
+  const tasks = await Task.find().lean();
   return tasks.map(task => ({
     ...task,
-    _id: task._id.toString(), // ✅ Ensure `_id` is a string
-    dueDate: task.dueDate ? task.dueDate.toISOString() : null, // ✅ Convert Date to string
+    _id: task._id.toString(),
+    dueDate: task.dueDate ? task.dueDate.toISOString() : null,
   }));
 }
 
