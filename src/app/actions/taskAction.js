@@ -7,20 +7,30 @@ import { Task } from "@/app/model/Task";
 // ✅ Fetch tasks (No Edge runtime here)
 export async function getTasks() {
   await connectDB();
-  const tasks = await Task.find().lean();
-  return tasks.map(task => ({
-    ...task,
-    _id: task._id.toString(),
-    dueDate: task.dueDate ? task.dueDate.toISOString() : null,
-  }));
+  try {
+    const tasks = await Task.find().lean();
+    return tasks.map((task) => ({
+      ...task,
+      _id: task._id.toString(),
+      dueDate: task.dueDate ? task.dueDate.toISOString() : null,
+    }));
+  } catch (error) {
+    console.error("error fetching tasks", error);
+    return [];
+  }
 }
 
 // Add task
 export async function addTask(formData) {
   await connectDB();
-  const { title, description, dueDate } = Object.fromEntries(formData);
-  const newTask = new Task({ title, description, dueDate });
-  await newTask.save();
+  try {
+    const { title, description, dueDate } = Object.fromEntries(formData);
+    const newTask = new Task({ title, description, dueDate });
+    await newTask.save();
+  } catch (error) {
+    console.error("error adding task", error);
+    return false;
+  }
 }
 
 // Toggle task completion
@@ -36,13 +46,17 @@ export async function toggleTaskCompletion(id) {
 // Update task
 export async function updateTask(id, formData) {
   await connectDB();
-  const { title, description, dueDate } = Object.fromEntries(formData);
+  try {
+    const { title, description, dueDate } = Object.fromEntries(formData);
 
-  await Task.findByIdAndUpdate(id, {
-    title,
-    description,
-    dueDate: dueDate ? new Date(dueDate) : null,
-  });
+    await Task.findByIdAndUpdate(id, {
+      title,
+      description,
+      dueDate: dueDate ? new Date(dueDate) : null,
+    });
+  } catch (error) {
+    console.error("error updating task", error);
+  }
 }
 
 // Delete task
