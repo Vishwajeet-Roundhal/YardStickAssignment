@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 Next.js Task Manager App
 
-## Getting Started
+A simple **Task Management Application** built using **Next.js (App Router)**, **MongoDB**, and **Server Actions**. Users can **add, edit, mark complete/incomplete, and delete tasks**.  
 
-First, run the development server:
+## 🚀 Features  
+- ✅ **Create, Read, Update, Delete (CRUD)** tasks  
+- ✅ **MongoDB for persistent storage**  
+- ✅ **Server Actions for seamless API calls**  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 📌 **Tech Stack**
+- **Frontend:** Next.js  
+- **Backend:** Next.js API Routes + MongoDB  
+- **Database:** MongoDB Atlas  
+- **Deployment:** Vercel  
+
+---
+
+## 🔧 **Installation & Setup**
+```sh
+git clone https://github.com/Vishwajeet-Roundhal/YardStickAssignment.git
+cd task-manager
+
+npm install
+
+MONGODB_URI=mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@cluster.mongodb.net/tasksDB?retryWrites=true&w=majority
+
+npm run dev or npx next dev
+
+App will be available at: http://localhost:3000
+
 ```
+📂 Folder Structure
+```sh
+task-manager/
+│-- src/
+│   ├── app/                    # Next.js App Router
+│   │   ├── page.js             # Home page (task list)
+│   │   ├── edit/[id]/page.js   # Edit task page
+│   │   ├── api/tasks/route.js  # API route for tasks
+│   ├── actions/                # Server Actions
+│   │   ├── taskActions.js      # CRUD actions for tasks
+│   ├── lib/                    # Database connection
+│   │   ├── db.js               # MongoDB connection logic
+│   ├── model/                  # Mongoose models
+│   │   ├── Task.js             # Task schema
+│   ├── styles/                 # Global styles
+│-- .env                        # Environment variables (not pushed to GitHub)
+│-- next.config.js              # Next.js config
+│-- package.json                # Dependencies
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
